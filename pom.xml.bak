@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion> <!-- 
+    项目基本信息 --> <groupId>de.Herbystar.TTA
+</groupId> 
+    <artifactId>TTA</artifactId> 
+    <version>5.5</version> 
+    <packaging>jar</packaging> <!-- 项目属性 --> 
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source> 
+        <maven.compiler.target>1.8</maven.compiler.target> 
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties> <!-- 依赖管理 --> <dependencies> 
+        <!-- Spigot API dependency for MC 1.20.4, 
+        replace with the correct version or use 
+        Paper's API if available --> <dependency>
+            <groupId>org.spigotmc</groupId> 
+            <artifactId>spigot-api</artifactId> 
+            <version>1.20.4-R0.1-SNAPSHOT</version> 
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- If using Paper-specific features, include 
+        Paper's API instead or in addition to Spigot's 
+        --> <!-- Replace the version below with the 
+        latest compatible version for 1.20.4 --> <!-- 
+        <dependency>
+            <groupId>com.destroystokyo.paper</groupId> 
+            <artifactId>paper-api</artifactId> 
+            <version>1.20.4-R0.1</version> 
+            <scope>provided</scope>
+        </dependency> --> </dependencies> <!-- 
+    构建配置 --> <build>
+        <plugins> <!-- Maven Shade Plugin can be used 
+            to create an Uber-JAR including 
+            dependencies --> <plugin>
+                <groupId>org.apache.maven.plugins</groupId> 
+                <artifactId>maven-shade-plugin</artifactId> 
+                <version>3.2.4</version> <executions>
+                    <execution> <phase>package</phase> 
+                        <goals>
+                            <goal>shade</goal> 
+                        </goals> <configuration>
+                            <transformers> 
+                                <transformer 
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>de.Herbystar.TTA.Main</mainClass> 
+                                    <!-- Specify your 
+                                    main class if you 
+                                    have one -->
+                                </transformer> 
+                            </transformers> <!-- 
+                            Exclude signatures to 
+                            avoid conflicts -->
+                        </configuration>
+                    </execution> </executions> 
+            </plugin>
+        </plugins> </build>
+
+<repositories>
+        <repository> <id>spigot-repo</id> 
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url> 
+            <snapshots>
+                <enabled>true</enabled> </snapshots> 
+        </repository>
+    </repositories> </project>
